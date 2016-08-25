@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 
@@ -15,8 +15,9 @@ def authentication(request):
         elif action == 'login':
             user  = authenticate(username=username, password=password)
             login(request, user)
+        return redirect('/')
     
     return render(request, 'login.html', {})
 
 def hello(request):
-    return render(request, 'hello.html', {})
+    return render(request, 'hello.html')
